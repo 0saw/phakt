@@ -8,6 +8,12 @@ body {
     touch-action: none;
 }
 
+[hidden] {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .game {
     display: flex;
     align-items: center;
