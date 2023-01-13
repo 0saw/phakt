@@ -37,6 +37,8 @@ const distance = (
   return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 }
 
+window.addEventListener('contextmenu', function (e) { e.preventDefault() })
+
 let zIndex = 1
 
 void (async () => {
@@ -64,6 +66,8 @@ void (async () => {
   bag.innerText = `x${piecesBag.length}`
 
   game.addEventListener('pointerdown', (e) => {
+    console.log(`pointerdown ${e.type}`)
+    e.preventDefault()
     let piece: HTMLDivElement
     let grabOffsetX = -HALF_WIDTH
     let grabOffsetY = -HALF_HEIGHT
@@ -98,6 +102,7 @@ void (async () => {
     piece.style.zIndex = `${zIndex++}`
 
     const update = (e: PointerEvent): void => {
+      console.log(`update ${e.type}`)
       bag.classList.toggle('game__bag--active', isInBag(e.x, e.y))
 
       piece.style.transform = `translate(${Math.min(window.innerWidth - WIDTH, Math.max(0, e.x + grabOffsetX))}px, ${Math.min(window.innerHeight - HEIGHT, Math.max(0, e.y + grabOffsetY))}px)`
@@ -105,6 +110,7 @@ void (async () => {
     update(e)
 
     const stop = (e: PointerEvent): void => {
+      console.log(`stop ${e.type}`)
       e.stopPropagation()
       e.stopImmediatePropagation()
       game.removeEventListener('pointermove', update)
