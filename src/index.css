@@ -1,0 +1,71 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+    overflow: hidden;
+    overscroll-behavior: none;
+    -webkit-touch-callout: none;
+    touch-action: none;
+}
+
+[hidden] {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background:
+        radial-gradient(circle, rgba(97, 69, 10, 0.45) 0%, rgba(97, 69, 10, 0.45) 40%, rgba(0, 0, 0, 0.67) 140%),
+        url(./images/cork-board.webp);
+    user-select: none;
+}
+
+.game__container {
+    position: relative;
+}
+
+.game__bag {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: url(./images/delete.svg);
+}
+
+.game__bag--active {
+    background: url(./images/delete-active.svg);
+}
+
+.game__area {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+    .game__bag {
+        top: 0;
+        right: 100%;
+        bottom: 0;
+        left: auto;
+        margin: auto 60px auto 0;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .game__bag {
+        width: 240px;
+        height: 240px;
+    }
+}

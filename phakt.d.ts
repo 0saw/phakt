@@ -1,3 +1,5 @@
 declare const process: {
-  env: {}
+  env: {
+    RANDOM_IMAGE_SERVICE: string
+  }
 }
