@@ -11,8 +11,8 @@ export const move = (element: HTMLElement, x: number, y: number): void => {
   const offsetY = parseFloat(element.dataset.offsetY ?? '0')
 
   element.style.transform = `translate(
-    ${clamp(x - offsetX, 0, window.innerWidth - element.clientWidth)}px, 
-    ${clamp(y - offsetY, 0, window.innerHeight - element.clientHeight)}px
+    ${clamp(x - offsetX, 0, window.innerWidth - element.clientWidth) - window.innerWidth / 2 + window.scrollX}px, 
+    ${clamp(y - offsetY, 0, window.innerHeight - element.clientHeight) - window.innerHeight / 2 + window.scrollY}px
   )`
 }
 
@@ -34,8 +34,8 @@ export const getPiece = (
   piece.hidden = true
   piece.style.cssText = `
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: ${width}px;
     height: ${height}px;
     background-image: url(${src});
