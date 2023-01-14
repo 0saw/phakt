@@ -82,6 +82,8 @@ const onPointerUp = (e: PointerEvent): void => {
 
     move(piece, gameAreaRect.left + tileX * pieceRect.width, gameAreaRect.top + tileY * pieceRect.height)
     checkWin(scene)
+  } else {
+    piece.dataset.correct = 'false'
   }
 }
 
@@ -90,7 +92,9 @@ const onPointerDown = (e: PointerEvent): void => {
   let offsetX = e.offsetX
   let offsetY = e.offsetY
 
-  if (isIntersecting(bag, e.x, e.y)) {
+  if (e.target instanceof HTMLDivElement && 'piece' in e.target.dataset) {
+    piece = e.target
+  } else if (isIntersecting(bag, e.x, e.y)) {
     const availablePieces = scene
       .filter((element) => element.hidden)
       .sort(() => Math.random() - 0.5)
@@ -101,8 +105,6 @@ const onPointerDown = (e: PointerEvent): void => {
       offsetX = nextPiece.clientWidth / 2
       offsetY = nextPiece.clientHeight / 2
     }
-  } else if (e.target instanceof HTMLDivElement && 'piece' in e.target.dataset) {
-    piece = e.target
   }
 
   if (typeof piece === 'undefined') {
